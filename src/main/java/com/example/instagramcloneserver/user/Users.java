@@ -14,19 +14,19 @@ public class Users {
     String uname;
     String image;
     String description;
-    int followers;
-    int following;
+//    int followers;
+//    int following;
 
     public  Users() {}
 
-    public Users(int id, String name, String uname, String image, String description, int followers, int following) {
+    public Users(int id, String name, String uname, String image, String description) {
         this.id = id;
         this.name = name;
         this.uname = uname;
         this.image = image;
         this.description = description;
-        this.followers = followers;
-        this.following = following;
+//        this.followers = followers;
+//        this.following = following;
     }
 
     public int getId() {
@@ -69,21 +69,21 @@ public class Users {
         this.description = description;
     }
 
-    public int getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(int followers) {
-        this.followers = followers;
-    }
-
-    public int getFollowing() {
-        return following;
-    }
-
-    public void setFollowing(int following) {
-        this.following = following;
-    }
+//    public int getFollowers() {
+//        return followers;
+//    }
+//
+//    public void setFollowers(int followers) {
+//        this.followers = followers;
+//    }
+//
+//    public int getFollowing() {
+//        return following;
+//    }
+//
+//    public void setFollowing(int following) {
+//        this.following = following;
+//    }
 
     @Override
     public String toString() {
@@ -93,8 +93,6 @@ public class Users {
                 ", uname='" + uname + '\'' +
                 ", image='" + image + '\'' +
                 ", description='" + description + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
                 '}';
     }
 }

@@ -17,7 +17,6 @@ public class CredentialsController {
     @PostMapping("/signin")
     int verifyLogin(@RequestBody LoginData data){
         try {
-            System.out.println(data);
             Credentials userCred = repo.findByEmailAndPass(data.email, data.pass);
             return userCred.getId();
         } catch (Exception e){

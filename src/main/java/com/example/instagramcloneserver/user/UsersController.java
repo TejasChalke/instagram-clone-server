@@ -1,5 +1,6 @@
 package com.example.instagramcloneserver.user;
 
+import com.example.instagramcloneserver.requestbodystructure.FollowData;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class UsersController {
         try {
             return repo.findById(id);
         } catch (Exception e){
+            System.out.println(e.getMessage());
             return Optional.empty();
         }
     }
