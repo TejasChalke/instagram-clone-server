@@ -30,6 +30,28 @@ public class UsersController {
         }
     }
 
+    @GetMapping("/getbyuname")
+    int getByUname(@RequestParam String uname){
+        try {
+            if(repo.findByUname(uname) == null) return 1;
+            return 0;
+        } catch (Exception e){
+            System.out.println("Error getting user by uname" + e.getMessage());
+            return -1;
+        }
+    }
+
+    @PostMapping("/adduser")
+    int addUser(@RequestParam int id, @RequestParam String uname, @RequestParam String name){
+        try {
+            Users user = repo.saveAndFlush(new Users(id, name, uname, null, ""));
+            return user.getId();
+        } catch (Exception e){
+            System.out.println("Error adding user" + e.getMessage());
+            return -1;
+        }
+    }
+
     @GetMapping("/getrandomusers/{id}")
     List<Users> getRandomUsers(@PathVariable("id") int id){
         return repo.findRandomUsers(id);

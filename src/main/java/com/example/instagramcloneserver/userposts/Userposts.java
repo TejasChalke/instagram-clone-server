@@ -9,6 +9,16 @@ public class Userposts {
     int id;
     int userid;
     String description;
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Lob
     @Column(length = 1000)
     private byte[] image;
@@ -16,8 +26,9 @@ public class Userposts {
 
     public Userposts() {}
 
-    public Userposts(int userid, String description, byte[] image, int likes) {
+    public Userposts(int userid, String name, String description, byte[] image, int likes) {
         this.userid = userid;
+        this.name = name;
         this.description = description;
         this.image = image;
         this.likes = likes;

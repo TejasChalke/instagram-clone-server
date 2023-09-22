@@ -17,9 +17,9 @@ public class UserpostsController {
     }
 
     @PostMapping("/addpost")
-    int addPost(@RequestParam("image") MultipartFile image, @RequestParam("userId") int userId, @RequestParam("description") String description){
+    int addPost(@RequestParam("image") MultipartFile image, @RequestParam("userId") int userId, @RequestParam("name") String name, @RequestParam("description") String description){
         try{
-            Userposts up = repo.saveAndFlush(new Userposts(userId, description, ImageUtil.compressImage(image.getBytes()), 0));
+            Userposts up = repo.saveAndFlush(new Userposts(userId, name, description, ImageUtil.compressImage(image.getBytes()), 0));
             return up.getId();
         }catch (Exception e){
             System.out.println("Error adding post: " + e.getMessage());

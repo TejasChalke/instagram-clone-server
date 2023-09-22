@@ -2,20 +2,19 @@ package com.example.instagramcloneserver.credentials;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Credentials {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String email;
     String pass;
 
     public Credentials() {}
 
-    public Credentials(int id, String email, String pass) {
-        this.id = id;
+    public Credentials(String email, String pass) {
         this.email = email;
         this.pass = pass;
     }
