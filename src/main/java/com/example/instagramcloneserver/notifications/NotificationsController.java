@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class NotificationsController {
@@ -15,14 +16,18 @@ public class NotificationsController {
     public NotificationsController(NotificationsRepository repo) { this.repo = repo; }
 
     @PostMapping("/addnotification")
-    int addNotification(@RequestBody NotificationData body){
+    int addNotification(@RequestBody Map<String, Object> notifyData){
         try {
+            int user = (int) notifyData.get("user");
+            String type = (String) notifyData.get("type");
+            String message = (String) notifyData.get("message");
+
             java.util.Date now = new java.util.Date();
             String pattern = "yyyy-MM-dd";
             SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 
             Date date = Date.valueOf(formatter.format(now));
-            Notifications n = repo.saveAndFlush(new Notifications(Integer.parseInt(body.user), body.type, body.message, date));
+            Notifications n = repo.saveAndFlush(new Notifications(user, type, message, date));
             return n.getId();
         }catch (Exception e){
             System.out.println("Add notification: " + e.getMessage());
@@ -36,6 +41,16 @@ public class NotificationsController {
             return repo.findByUser(userId);
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @GetMapping("/deletenotification")
+    int deleteNotification(@RequestParam int id){
+        try{
+            repo.deleteById(id);
+            return 1;
+        }catch (Exception e){
+            return -1;
         }
     }
 }
